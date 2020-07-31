@@ -11,7 +11,7 @@ const routes: Routes = [
       .then(m => m.DashboardModule) },
   { path: 'login', component: LoginComponent },
   { path: 'about', component: AboutComponent },
-  { path: '', redirectTo: 'dashboard', pathMatch:'full' },
+  { path: '', redirectTo: '/dashboard', pathMatch:'full' },
   { path: '**',     
     loadChildren: () => import('./modules/dashboard.module')
       .then(m => m.DashboardModule) },
