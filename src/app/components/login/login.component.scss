@@ -1,0 +1,20 @@
+.app-login-container{
+    height: 100%;
+    display: flex;
+
+    .app-login-card{
+        margin: auto;
+        padding: 20px 30px;
+        width: 50%;
+        height: 60%;
+
+        .app-login-form {
+            display: flex;
+            flex-direction: column;
+
+            .mdl-textfield {
+                width: 100%;
+            }
+        }
+    }
+}

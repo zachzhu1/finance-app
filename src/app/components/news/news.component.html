@@ -1,0 +1,44 @@
+<div class="mdl-card__title mdl-card--border">
+    <h4>News</h4>
+    <button *ngIf="notificationType === 0"
+            id="news-menu"
+            class="mdl-button mdl-js-button mdl-button--icon pull-right mp-settings">
+      <i class="material-icons" title="More settings">more_vert</i>
+    </button>
+
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" 
+        for="news-menu">
+      <li class="mdl-menu__item" (click)="reload()">Reload</li>
+    </ul>
+  </div>
+
+  <div class="mdl-card__supporting-text">
+    <app-notification *ngIf="notificationType > 0"
+                     [type]="notificationType"
+                     [value]="notification"
+                     [button]="button"
+                     (action)="notificationAction($event)"></app-notification>
+    <ul *ngIf="notificationType === 0"
+        class="mdl-list">
+      <li *ngFor="let article of news"
+          class="mdl_list__item mdl-list__item--two-line">
+        <a [href]="article.url"
+           target="_blank">
+          <div class="mdl-list__item-primary-content">
+            <div class="mdl-list__item-sub-title" [innerHTML]="article.source"></div>
+            <div class="mp-main mdl-color-text--black">
+              <b [innerHTML]="article.title"></b>
+            </div>
+            <img *ngIf="article.image"
+                 [src]="article.image">
+  
+            <div class="mdl-list__item-sub-title mdl-color-text--black">
+              {{article.date}}
+              <i class="material-icons pull-right" title="Read More">launch</i>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+  

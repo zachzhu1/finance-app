@@ -1,0 +1,13 @@
+<div *ngIf="items.length > 0"
+    class="mdl-grid">
+ <div class="mdl-cell mdl-cell--6-col">
+   <ul class="mdl-list">
+     <li class="mdl-list__item" *ngFor="let item of items">{{item.label}}</li>
+   </ul>
+ </div>
+ <div class="mdl-cell mdl-cell--6-col">
+   <ul class="mdl-list">
+     <li class="mdl-list__item" *ngFor="let item of items"><b>{{item.value}}</b></li>
+   </ul>
+ </div>
+</div>

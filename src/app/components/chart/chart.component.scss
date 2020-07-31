@@ -1,0 +1,64 @@
+@import 'src/scss/variables';
+
+.mp-chart {
+    .mdl-card__title {
+      h4 {
+        span:first-child,
+        .mp-price {
+          margin-right: 5px;
+        }
+        .mp-change {
+          font-size: 1rem;
+        }
+      }
+  
+      .mp-favorite {
+        .material-icons {
+          position: absolute;
+        }
+      }
+    }
+  
+    .mdl-card__supporting-text {
+      height: calc(100% - 44px);
+  
+      .mp-container {
+        position: relative;
+        height: 100%;
+        border-top: $border;
+      }
+  
+      .mdl-app-navigation {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: auto;
+            width: 60%;
+            overflow: auto;   
+            .mdl-app-navigation__link {
+              flex:1;
+              text-align: center;
+              cursor: pointer;
+              height: 40px;
+              line-height: 40px;
+              padding: $padding-item;
+              color: #000;
+        }
+      .mdl-app-navigation__link:hover,
+      .mdl-app-navigation__link.is_active {
+        background: $color-hover;
+      }
+
+      .mdl-app-navigation__link.is_active {
+        border-bottom: 2px solid rgb(33,150,243);
+      }
+    }
+  
+    @media (max-width: 1200px) {
+      .mdl-app-navigation__link:hover,
+      .mdl-app-navigation__link.active {
+        background: white;
+      }
+    }
+  }
+} 

@@ -1,0 +1,5 @@
+<span [ngSwitch]="sidebarState.type$ | async">
+    <app-favorite-list *ngSwitchCase="0"></app-favorite-list>
+    <app-edit *ngSwitchCase="1"></app-edit>
+    <app-search *ngSwitchCase="2"></app-search>
+</span>

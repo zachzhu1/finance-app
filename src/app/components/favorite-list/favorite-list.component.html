@@ -1,0 +1,55 @@
+<div class="mdl-card__title">
+  <h4 class="pull-left">Favorites</h4>
+
+  <button id="favorites-menu"
+          class="mdl-button mdl-js-button mdl-button--icon">
+    <i class="material-icons" title="More settings">more_vert</i>
+  </button>
+
+  <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" 
+      for="favorites-menu">
+    <li class="mdl-menu__item"
+                   (click)="edit()"
+                   *ngIf="favoritesData?.length !== 0">Edit List
+    </li>
+    <li  class="mdl-menu__item"
+                   (click)="add()">Add Symbol
+    </li>
+    <li class="mdl-menu__item"
+                   (click)="reload()"
+                   *ngIf="favoritesData?.length !== 0">Reload
+    </li>
+  </ul>
+</div>
+
+<app-notification *ngIf="notificationType !== 0"
+                 [type]="notificationType"
+                 [value]="notification"
+                 [button]="button"
+                 (action)="notificationAction($event)"></app-notification>
+
+<ul *ngIf="notificationType === 0"
+    class="mdl-navigation">
+  <li *ngFor="let favorite of favoritesData"
+      class="mdl-navigation__link"
+      [ngClass]="{'mp-active': stock === favorite.symbol}"
+      (click)="select(favorite.symbol)">
+    <div class="pull-left mp-text">
+      <p><b>{{favorite.symbol}}</b></p>
+
+      <p class="mp-small-font mp-truncate">{{favorite.name}}</p>
+    </div>
+
+    <div class="mp-prices">
+      <b class="pull-left">
+        <span class="mp-transition mp-highlight">{{favorite.priceDisplay}}</span>
+      </b>
+
+      <div class="mp-pill pull-left"
+           [ngClass]="favorite.change >= 0 ? 'mdl-color--green-A700' : 'mdl-color--red'"
+           (click)="togglePill()">
+        {{favorite[pillType]}}
+      </div>
+    </div>
+  </li>
+</ul>

@@ -1,0 +1,46 @@
+<div class="mdl-card__title mdl-card--border">
+    <h4 *ngIf="!stockData.symbol">Chart</h4>
+    <h4 *ngIf="stockData.symbol">
+      <span class="mp-nowrap">{{stockData.name}} ({{stockData.symbol}})</span>
+      <span class="mp-nowrap">
+        <b class="mp-price">
+        <span class="mp-transition"
+              [ngClass]="(dashboardState.highlights$ | async)[stockData.symbol]?.price">{{stockData.priceDisplay}}</span>
+        </b>
+        <span class="mp-change"
+              [ngClass]="stockData.change >= 0 ? 'mdl-color-text--green-A700' : 'mdl-color-text--red'">{{stockData.change}} ({{stockData.percentage}})</span>
+      </span>
+    </h4>
+    <button *ngIf="stock"
+            class="mdl-button mdl-js-button mdl-button--icon pull-right"
+            (click)="toggleFavorite(!favorite)">
+      <i *ngIf="favorite"
+                title="Remove from Favorites"
+                class="material-icons mdl-color-text--amber">star
+      </i>
+      <i class="material-icons" *ngIf="!favorite"
+                title="Add to Favorites">star_bordered
+      </i>
+    </button>
+  </div>
+
+  <app-notification *ngIf="notificationType > 0"
+      [type]="notificationType"
+      [value]="notification"
+      [button]="button"
+      (action)="notificationAction($event)"></app-notification>
+
+  <div class="mdl-card__supporting-text" *ngIf="notificationType === 0">
+    <ul class="mdl-app-navigation">
+        <li class="mdl-app-navigation__link" 
+          *ngFor="let item of ranges" 
+          [ngClass]="item.id === rangeId? 'is_active': ''"
+          (click)="tabChanged(item.id)">
+            {{item.text}}
+        </li>
+    </ul>
+    <div class="mp-container">
+      <app-d3fc></app-d3fc>
+    </div>
+  </div>
+  

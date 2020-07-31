@@ -1,0 +1,56 @@
+<div class="mdl-card__title mdl-card--border">
+    <h4>Key Statistics</h4>
+    <button *ngIf="notificationType === 0"
+            id="info-menu"
+            class="mdl-button mdl-js-button mdl-button--icon pull-right mp-settings">
+      <i class="material-icons" title="More settings">more_vert</i>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+      for="info-menu">
+      <li class="mdl-menu__item" (click)="reload()">Reload</li>
+    </ul>
+  </div>
+
+  <div class="mdl-card__supporting-text">
+    <app-notification *ngIf="notificationType > 0"
+                     [type]="notificationType"
+                     [value]="notification"
+                     [button]="button"
+                     (action)="notificationAction($event)"></app-notification>
+    <div *ngIf="notificationType === 0"
+         class="mdl-grid">
+      <div class="mdl-cell mdl-cell--12-col">
+        <ul class="mdl-list">
+          <li class="mdl-list__item">
+            <app-range [options]="dayOptions"></app-range>
+          </li>
+  
+          <li class="mdl-list__item">
+            <app-range [options]="yearOptions"></app-range>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div *ngIf="notificationType === 0"
+         class="mdl-grid">
+      <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
+        <ul class="mdl-list">
+          <li class="mdl-list__item mp-text"
+                         *ngFor="let info of leftColumn">
+            <p>{{info.text}}</p>
+            <b>{{data[info.id] || 'N/A'}}</b>
+            </li>
+        </ul>
+      </div>
+      <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
+        <ul class="mdl-list">
+          <li class="mdl-list__item mp-text"
+                         *ngFor="let info of rightColumn">
+            <p>{{info.text}}</p>
+            <b>{{data[info.id] || 'N/A'}}</b>
+        </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
